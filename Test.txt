@@ -1,0 +1,17 @@
+Script Creator:		Darren White - MSP geek.
+			https://www.mspgeek.com/topic/3268-gpo-import-group-policy-deployment-script/?tab=comments#comment-20508
+
+Script Purpose:		Script downloads Zipped GPO list and then imports
+			them into the domain. This one is modified so that
+			it runs another script called CIT - Onboarding - Rewrite GPOs
+			between steps SET: @backupmanifest@ = FILECONTENTS[@ComputerFilePath@\Manifest.xml
+			and Note: Parse the manifest XML from the GPO bundle.
+
+Script Use:		Script is to be used on a client DC during onboarding
+
+Script Considerations:	As you add GPO's you'll need to edit the automate script and add
+			them in. Unable to export XML for a backup into Github for now.
+
+Script Issues:		None currently
+
+Script Imrpovements:	None currently
