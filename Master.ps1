@@ -10,4 +10,4 @@ $TargetPath = $RootDirectory + "InitialConnection.xml"
 $WebClient.DownloadFile($uri, $TargetPath)
 #Register first script as a scheduled task
 
-Register-ScheduledTask -Xml (get-content $RootDirectory + "initialconnection.xml" | Out-String) -TaskName "Initial Connection"
+Register-ScheduledTask -Xml (get-content ($RootDirectory + "initialconnection.xml") | Out-String) -TaskName "Initial Connection"
