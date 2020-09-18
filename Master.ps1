@@ -18,4 +18,4 @@ $WebClient.DownloadFile($uri, $TargetPath)
 #Register first script as a scheduled task
 
 Register-ScheduledTask -Xml (get-content ($RootDirectory + "initialconnection.xml") | Out-String) -TaskName "Initial Connection"
-c:\windows\system32\sysprep\sysprep /generalize /oobe /shutdown /unattend:c:\support\unattend.xml
+c:\windows\system32\sysprep\sysprep /oobe /reboot /unattend:c:\support\unattend.xml
