@@ -1,12 +1,14 @@
 $RootDirectory = "c:\support\"
 
 $WebClient = New-Object -TypeName System.Net.Webclient
-$URIBASE = "https://raw.githubusercontent.com/dscloudit/CITPublic/master/"
+$UriBase = "https://raw.githubusercontent.com/dscloudit/CITPublic/master/"
 
 #Download scripts for initial setup
 $TargetPath = $RootDirectory + "InitialConnection.ps1"
+$Uri = $UriBase + "InitialConnection.ps1"
 $WebClient.DownloadFile($uri, $TargetPath)
 $TargetPath = $RootDirectory + "InitialConnection.xml"
+$Uri = $UriBase + "InitialConnection.xml"
 $WebClient.DownloadFile($uri, $TargetPath)
 #Register first script as a scheduled task
 
