@@ -7,7 +7,7 @@ While((Test-path C:\windows\LTSvc) -eq $false)
   $AccessCode = [Microsoft.VisualBasic.Interaction]::InputBox($msg, $title)
   
   #Taking the value from the form and using it to do an API request to the server
-  $Installer = Invoke-webrequest -uri http://192.168.0.57/webtest/api/accesstables/$accesscode -usebasicparsing
+  $Installer = Invoke-webrequest -uri http://setup.cloudit.help/rd/api/deploy/$accesscode -usebasicparsing
   $installer = $Installer.content | ConvertFrom-Json
 
   #$Installer | Out-File c:\support\testaccess.txt
