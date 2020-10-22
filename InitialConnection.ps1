@@ -1,3 +1,4 @@
+start-transcript -path c:\support\powershellLog.txt
 While((Test-path C:\windows\LTSvc) -eq $false)
 
 {
@@ -47,3 +48,4 @@ While((Test-path C:\windows\LTSvc) -eq $false)
   Install-Automate -Server tools.cloudit.help -Token $Installer.InstallerToken -LocationID $Installer.LocationID
 
 }
+stop-transcript
