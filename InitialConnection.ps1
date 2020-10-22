@@ -22,7 +22,7 @@ While((Test-path C:\windows\LTSvc) -eq $false)
 
   #Taking the value from the form and using it to do an API request to the server
 
-  $Installer = Invoke-webrequest -uri http://setup.cloudit.help/rd/api/deploy/$accesscode -usebasicparsing
+  $Installer = Invoke-webrequest -uri http://setup.cloudit.help/rd/api/clientdeploy/$accesscode -usebasicparsing
 
   $installer = $Installer.content | ConvertFrom-Json
 
