@@ -37,7 +37,7 @@ While((Test-path C:\windows\LTSvc) -eq $false)
 
   $WebClient = New-Object -TypeName System.Net.Webclient
 
-  $URI = "https://raw.githubusercontent.com/dscloudit/CITPublic/master/Automate-Module.psm1"
+  $URI = "https://raw.githubusercontent.com/Braingears/PowerShell/master/Automate-Module.psm1"
 
   $TargetPath = "c:\support\Automate-Module.psm1"
 
