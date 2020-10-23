@@ -36,16 +36,13 @@ While((Test-path C:\windows\LTSvc) -eq $false)
   #Downloading other powershell script to install automate
 
   $WebClient = New-Object -TypeName System.Net.Webclient
+  $InstallToken = $Installer.installertoken
+  $URI = "https://tools.cloudit.help/labtech/deployment.aspx?InstallerToken=$InstallToken"
 
-  $URI = "https://raw.githubusercontent.com/Braingears/PowerShell/master/Automate-Module.psm1"
-
-  $TargetPath = "c:\support\Automate-Module.psm1"
+  $TargetPath = "c:\support\Agent.msi"
 
   $WebClient.DownloadFile($uri, $TargetPath)
-
-  Import-Module C:\support\Automate-Module.psm1
-
-  Install-Automate -Server tools.cloudit.help -Token $Installer.InstallerToken -LocationID $Installer.LocationID
+  start-process msiexec.exe -wait -argumentlist '/I c:\support\agent.msi /quiet'
 
 }
 stop-transcript
