@@ -1,4 +1,3 @@
-start-transcript -path c:\support\powershellLog.txt
 While((Test-path C:\windows\LTSvc) -eq $false)
 
 {
@@ -42,7 +41,26 @@ While((Test-path C:\windows\LTSvc) -eq $false)
   $TargetPath = "c:\support\Agent.msi"
 
   $WebClient.DownloadFile($uri, $TargetPath)
-  start-process msiexec.exe -wait -argumentlist '/I c:\support\agent.msi /quiet'
+ 
+  $job = Start-Job -ScriptBlock{
+  [Net.ServicePointManager]::SecurityProtocol = ([Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12)
+  $URI = "Https://raw.githubusercontent.com/Braingears/Powershell/master/Automate-Module.psm1"
+  $TargetPath = "c:\support\Automate-module.psm1"
+  $WebClient = New-Object -TypeName System.Net.Webclient
+  $WebClient.DownloadFile($uri, $TargetPath)
+  Import-Module "c:\support\automate-module.psm1"
+  Install-automate -Server "Tools.cloudit.help" -LocationID $Using:Installer.LocationID -Token $Using:InstallToken -Force
+  }
+  $Job | Wait-Job -Timeout 120
+  $job | Stop-Job
+  Start-Sleep 60
+  #If databases exists then we successfully registered into automate
+  #Disable task from startup
+  if(test-path c:\windows\ltsvc\databases)
+  {
+    Unregister-ScheduledTask -TaskName "Initial Connection" -Confirm:$false
+	Get-ChildItem -Path "c:\support" -Recurse | Remove-Item -Force -Recurse
+  }
 
 }
-stop-transcript
+
